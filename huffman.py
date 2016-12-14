@@ -1,8 +1,7 @@
-import click
-import sys
 import yaml
 
 from collections import deque
+
 
 class Node(object):
     def __init__(self, name, label="", parent=None, left_child=None, right_child=None):
