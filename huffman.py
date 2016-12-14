@@ -113,7 +113,7 @@ def main():
             if cmd != 'quit':
                 print 'Unrecognized option'
             continue
-        word = raw_input('Type input: ')
+        word = raw_input('Type input: ').lower()
         if cmd == 'e':
             print huffman.encode(language, word)
         elif cmd == 'd':
