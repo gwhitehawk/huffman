@@ -31,8 +31,6 @@ class Huffman(object):
         while len(tree) > 1:
             self.contract(tree)
         table = self.root_to_table(tree[0])
-        for k,v in table.iteritems():
-            print "{}: {}".format(k, v)
         return RootTable(tree[0], table)
 
     def contract(self, tree):
@@ -44,7 +42,6 @@ class Huffman(object):
         right_node.parent = new_node
         right_node.label = "1"
         new_freq = left_freq + right_freq
-
         cur = 0
         while cur < len(tree) and tree[cur][1] >= new_freq:
             cur += 1
@@ -103,11 +100,13 @@ class Huffman(object):
 
 def main():
     huffman = Huffman()
-    language = raw_input('Choose language [eng]: ') or 'eng'
-    print 'Type "quit" for exiting the program'
+    language = raw_input('Choose language: eng, svk [eng]: ') or 'eng'
+    print "Huffman encoding for language: " + language
+    for k,v in huffman.trees[language].table.iteritems():
+        print "{}: {}".format(k, v)
     cmd = ""
     while cmd != 'quit':
-        cmd = raw_input('Choose action [(e)ncode, (d)ecode]: ')
+        cmd = raw_input('Choose action [(e)ncode, (d)ecode, quit]: ')
         if cmd not in ['e', 'd']:
             if cmd != 'quit':
                 print 'Unrecognized option'
